@@ -14,19 +14,37 @@ const BoardWrite = () => {
     const {boardTitle, boardWriter, boardDetail} = board;
 
     const onChange = (event) => {
-        const {value, name} = event.target;
+        const { name, value } = event.target;
         setBoard({
             ...board,
             [name]: value,
         });
     };
 
+    const saveBoard = (event) => {
+        event.preventDefault();
+
+        const data = new FormData();
+        data.append('boardTitle', board.boardTitle);
+        data.append('boardWriter', board.boardWriter);
+        data.append('boardDetail', boardDetail);
+
+        axios
+            .post(`//localhost:8080/board`, data)
+            .then((response) => {
+                alert('등록되었습니다.');
+                navigate('/board');
+            });
+    };
+/*
     const saveBoard = async () => {
-        await axios.post('//localhost:8080/board', board).then((res) => {
+        console.log(board);
+        await axios.post(`//localhost:8080/board`, board).then((res) => {
             alert('등록되었습니다.');
             navigate('/board');
         });
     };
+*/
 
     const backToList = () => {
         navigate('/board');

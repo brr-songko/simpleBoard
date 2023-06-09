@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Board from "../components/Board";
 
-const BoardDetail = () => {
+const BoardText = () => {
     const { boardId } = useParams();
     const [loading, setLoading] = useState(true);
     const [board, setBoard] = useState({});
@@ -33,4 +33,4 @@ const BoardDetail = () => {
     );
 };
 
-export default BoardDetail;
+export default BoardText;
